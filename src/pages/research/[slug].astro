@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('research');
+  return posts.map(post => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout title={`${post.data.title} — 풀이`}>
+  <article class="article">
+
+    <header class="article-header">
+      <h1 class="article-title">{post.data.title}</h1>
+      <div class="article-meta">
+        {post.data.author && <span class="meta-item">{post.data.author}</span>}
+        <span class="meta-item meta-date">
+          {post.data.date.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+        </span>
+      </div>
+    </header>
+
+    {post.data.description && (
+      <div class="article-desc">{post.data.description}</div>
+    )}
+
+    <div class="article-body">
+      <Content />
+
+      {post.data.references.length > 0 && (
+        <section class="references">
+          <h3>References</h3>
+          <ol>
+            {post.data.references.map((ref: string) => <li>{ref}</li>)}
+          </ol>
+        </section>
+      )}
+    </div>
+
+    <footer class="article-footer">
+      <a href="/research" class="back-link">← Research</a>
+    </footer>
+
+  </article>
+</BaseLayout>
+
+<style>
+  .article {
+    
+  }
+
+  .article-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.4rem 1.5rem;
+    border-bottom: 0.5px solid var(--color-border);
+  }
+
+  .article-title {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  .article-meta {
+    display: flex;
+    gap: 1.4rem;
+    align-items: baseline;
+  }
+
+  .meta-item {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .meta-date {
+    color: var(--color-text-subtle);
+  }
+
+  .article-desc {
+    padding: 1.2rem 1.5rem;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    letter-spacing: 0.03em;
+    border-bottom: 0.5px solid var(--color-border);
+  }
+
+  .article-body {
+    padding: 3rem 1.5rem;
+    max-width: 640px;
+  }
+
+  .article-body :global(p) {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--color-text);
+    margin-bottom: 1.4em;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  .article-body :global(h2) {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 2.5em 0 1em;
+    color: var(--color-text-muted);
+  }
+
+  .references {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid var(--color-border);
+  }
+
+  .references h3 {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .references ol {
+    padding-left: 1.2rem;
+  }
+
+  .references li {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  .article-footer {
+    padding: 2rem 1.5rem 3rem;
+    border-top: 0.5px solid var(--color-border);
+  }
+
+  .back-link {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    transition: color 0.15s;
+  }
+
+  .back-link:hover {
+    color: var(--color-text);
+  }
+
+  @media (max-width: 600px) {
+    .article-header {
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1rem;
+    }
+    .article-body {
+      padding: 2rem 1rem;
+    }
+  }
+</style>

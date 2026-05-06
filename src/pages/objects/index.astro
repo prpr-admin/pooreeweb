@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('objects');
+const sorted = posts
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Objects — 풀이">
+  <div class="page">
+    <ul class="entry-list">
+      {sorted.map((post) => (
+        <li class="entry-item">
+          <a href={`/objects/${post.slug}`} class="entry-link">
+            {post.data.cover && (
+              <div class="entry-image-wrap">
+                <img
+                  src={post.data.cover}
+                  alt={post.data.title}
+                  class="entry-image"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="entry-caption">
+              <span class="entry-title">{post.data.title}</span>
+              <div class="entry-meta">
+                {post.data.material && <span class="meta-item">{post.data.material}</span>}
+                {post.data.dimensions && <span class="meta-item">{post.data.dimensions}</span>}
+                {post.data.edition && <span class="meta-item meta-edition">{post.data.edition}</span>}
+              </div>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .page { width: 100%; }
+
+  .entry-list {
+    list-style: none;
+  }
+
+  .entry-item {
+    border-bottom: 0.5px solid var(--color-border);
+  }
+
+  .entry-link {
+    display: block;
+    color: inherit;
+  }
+
+  /* 16:7 와이드 이미지 */
+  .entry-image-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+    background: #f0ede8;
+    transition: opacity 0.2s;
+  }
+
+  .entry-link:hover .entry-image-wrap { opacity: 0.9; }
+
+  .entry-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .entry-link:hover .entry-image { transform: scale(1.03); }
+
+  .entry-caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.6rem 1.5rem;
+    border-top: 0.5px solid var(--color-border);
+  }
+
+  .entry-item:not(:has(.entry-image-wrap)) .entry-caption {
+    border-top: none;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .entry-title {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  .entry-meta {
+    display: flex;
+    gap: 1.4rem;
+    align-items: baseline;
+  }
+
+  .meta-item {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .meta-edition { color: var(--color-text-subtle); }
+
+  @media (max-width: 600px) {
+    .entry-caption { padding: 0.5rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
+    .page-header { padding: 1rem; }
+  }
+</style>
