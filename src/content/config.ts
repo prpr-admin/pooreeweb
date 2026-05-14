@@ -70,10 +70,28 @@ const objects = defineCollection({
   }),
 });
 
+const projects = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    year: z.number().optional(),
+    program: z.string().optional(),
+    location: z.string().optional(),
+    area: z.string().optional(),
+    status: z.string().optional(),
+    description: z.string().optional(),
+    mainImage: z.string().optional(),
+    images: z.array(z.string()).default([]),
+    tags: z.array(z.string()).optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   archives,
   information,
   research,
   architecture,
   objects,
+  projects,
 };
