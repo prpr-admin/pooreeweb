@@ -1,17 +1,16 @@
 ---
 interface Props {
   title?: string;
+  fullBleed?: boolean;
 }
 
-const { title = '풀이' } = Astro.props;
+const { title = '풀이', fullBleed = true } = Astro.props;
 const currentPath = Astro.url.pathname;
 
 const navItems = [
-  { label: 'Archives', href: '/archives' },
   { label: 'Information', href: '/information' },
-  { label: 'Research', href: '/research' },
-  { label: 'Architecture', href: '/architecture' },
-  { label: 'Objects', href: '/objects' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Archives', href: '/archives' },
 ];
 ---
 
@@ -27,28 +26,31 @@ const navItems = [
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class:list={[{ 'full-bleed': fullBleed }]}>
 
-    <header class="header" id="header">
-      <a href="/" class="logo">풀이</a>
+    <header class="header">
+      <a href="/" class="logo">
+        <img src="/pooree%20CI_transparent.png" alt="풀이" class="logo-img" />
+      </a>
 
-      <!-- 헤더 내부 네비 (토글 시 좌측으로 펼쳐짐) -->
-      <nav class="header-nav" id="headerNav">
-        {navItems.map((item, i) => (
+      <nav class="nav">
+        {navItems.map((item) => (
           <a
             href={item.href}
-            class:list={['nav-link', { active: currentPath.startsWith(item.href) }]}
-            style={`--i: ${i}`}
+            class:list={[
+              'nav-link',
+              {
+                active:
+                  item.href === '/archives'
+                    ? currentPath === '/' || currentPath.startsWith('/archives')
+                    : currentPath.startsWith(item.href),
+              },
+            ]}
           >
             {item.label}
           </a>
         ))}
       </nav>
-
-      <!-- ··· 토글 버튼 -->
-      <button class="menu-btn" id="menuBtn" aria-label="메뉴" aria-expanded="false">
-        <span class="plus-icon">+</span>
-      </button>
     </header>
 
     <main class="main">
@@ -57,32 +59,6 @@ const navItems = [
 
   </body>
 </html>
-
-<script>
-  const menuBtn = document.getElementById('menuBtn');
-  const header = document.getElementById('header');
-
-  menuBtn?.addEventListener('click', () => {
-    const isOpen = header?.classList.toggle('nav-open');
-    menuBtn.setAttribute('aria-expanded', String(isOpen));
-  });
-
-  // 외부 클릭 시 닫기
-  document.addEventListener('click', (e) => {
-    if (!header?.contains(e.target as Node)) {
-      header?.classList.remove('nav-open');
-      menuBtn?.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      header?.classList.remove('nav-open');
-      menuBtn?.setAttribute('aria-expanded', 'false');
-    }
-  });
-</script>
 
 <style is:global>
   *, *::before, *::after {
@@ -99,7 +75,7 @@ const navItems = [
     --color-border: rgba(0, 0, 0, 0.1);
     --color-bg: #fff;
     --color-bg-hover: #f8f8f7;
-    --header-h: 34px;
+    --header-h: 44px;
   }
 
   html {
@@ -114,11 +90,14 @@ const navItems = [
     padding-top: var(--header-h);
   }
 
+  body.full-bleed {
+    padding-top: 0;
+  }
+
   a { color: inherit; text-decoration: none; }
 </style>
 
 <style>
-  /* ── 헤더 ── */
   .header {
     position: fixed;
     top: 0;
@@ -126,111 +105,55 @@ const navItems = [
     right: 0;
     height: var(--header-h);
     padding: 0 1.5rem;
-    border-bottom: 0.5px solid var(--color-border);
-    background: var(--color-bg);
+    background: transparent;
     z-index: 100;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: space-between;
   }
 
   .logo {
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    font-weight: 600;
-    text-transform: uppercase;
-    flex-shrink: 0;
-    margin-right: auto; /* 로고를 왼쪽에 고정, 나머지를 오른쪽으로 */
-  }
-
-  /* ── 헤더 내 네비 ── */
-  .header-nav {
     display: flex;
     align-items: center;
-    gap: 0;
-    overflow: hidden;
-    /* 기본: 숨김 */
-    max-width: 0;
-    opacity: 0;
-    pointer-events: none;
-    transition: max-width 0.4s ease, opacity 0.3s ease;
   }
 
-  .header.nav-open .header-nav {
-    max-width: 700px; /* 충분히 크게 */
-    opacity: 1;
-    pointer-events: all;
+  .logo-img {
+    height: 20px;
+    width: auto;
+    display: block;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
   }
 
   .nav-link {
     font-size: 10px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--color-text-muted);
-    white-space: nowrap;
-    padding: 0 1rem;
-    height: var(--header-h);
-    display: flex;
-    align-items: center;
-    border-left: 0.5px solid var(--color-border);
     transition: color 0.15s;
-    /* 개별 슬라이드 인 */
-    transform: translateX(12px);
-    opacity: 0;
-    transition: color 0.15s,
-                transform 0.3s ease calc(var(--i) * 0.05s),
-                opacity   0.3s ease calc(var(--i) * 0.05s);
+    white-space: nowrap;
   }
 
-  .header.nav-open .nav-link {
-    transform: translateX(0);
-    opacity: 1;
-  }
-
-  .nav-link:hover { color: var(--color-text); }
-  .nav-link.active { color: var(--color-text); font-weight: 500; }
-
-  /* ── ··· 토글 버튼 ── */
-  .menu-btn {
-    flex-shrink: 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 8px 0 8px 1rem;
-    border-left: 0.5px solid var(--color-border);
-  }
-
-  .plus-icon {
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 1;
+  .nav-link:hover {
     color: var(--color-text);
-    display: block;
-    transition: transform 0.25s ease, color 0.15s;
   }
 
-  .menu-btn:hover .plus-icon { color: var(--color-text-muted); }
-
-  /* 열린 상태: + → × */
-  .header.nav-open .menu-btn .plus-icon {
-    transform: rotate(45deg);
+  .nav-link.active {
+    color: var(--color-text);
+    font-weight: 500;
   }
 
-  /* ── 메인 ── */
   .main {
     width: 100%;
     min-height: calc(100vh - var(--header-h));
   }
 
-  /* ── 모바일 ── */
-  @media (max-width: 640px) {
-    .nav-link {
-      padding: 0 0.65rem;
-      font-size: 9px;
-      letter-spacing: 0.08em;
-    }
+  @media (max-width: 480px) {
+    .nav { gap: 1.25rem; }
+    .nav-link { font-size: 9px; letter-spacing: 0.1em; }
   }
 </style>
