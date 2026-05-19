@@ -1,8 +1,10 @@
 ---
 title: r.r.r.
 year: 2021
-program: 리서치
-status: 진행 중
+type: Research
+location:
+area:
+status: Ongoing
 description: reuse, recycle, rethink — 건축의 순환적 실천에 대한 연구
 mainImage: /R0004250.jpg
 images: []

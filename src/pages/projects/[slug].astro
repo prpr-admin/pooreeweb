@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
-const { title, year, program, location, area, status, mainImage, images } = project.data;
+const { title, year, type, location, area, status, mainImage, images } = project.data;
 ---
 
 <BaseLayout title={`${title} — 풀이`}>
@@ -36,10 +36,10 @@ const { title, year, program, location, area, status, mainImage, images } = proj
       <!-- 좌측: 개요 및 설명 텍스트 -->
       <aside class="col-left">
         <dl class="meta-list">
-          {program && (
+          {type && (
             <>
-              <dt class="meta-label">Program</dt>
-              <dd class="meta-value">{program}</dd>
+              <dt class="meta-label">Type</dt>
+              <dd class="meta-value">{type}</dd>
             </>
           )}
           {location && (
@@ -103,7 +103,7 @@ const { title, year, program, location, area, status, mainImage, images } = proj
   /* 히어로 이미지 */
   .hero {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 1920 / 980;
     overflow: hidden;
     background: #c8c4be;
     border-bottom: 0.5px solid var(--color-border);

@@ -1,10 +1,10 @@
 ---
 title: 서울시립대학교 국제학사 증축
 year: 2022
-program: 교육시설
-location: 서울 동대문구
+type: Educational Facility
+location: Dongdaemun-gu, Seoul
 area: 4,500㎡
-status: 계획안
+status: Proposal
 description: 국제 학생을 위한 기숙사 증축 및 공동체 공간 조성
 mainImage: /R0004250.jpg
 images: []

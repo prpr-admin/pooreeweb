@@ -1,9 +1,10 @@
 ---
 title: 우리는 무엇에 둘러싸여 있는가
 year: 2023
-program: 전시
-location: 서울
-status: 완료
+type: Exhibition
+location: Seoul
+area:
+status: Completed
 description: 우리를 둘러싼 공간과 물질, 그리고 그 관계에 대한 탐구
 mainImage: /R0004250.jpg
 images: []
