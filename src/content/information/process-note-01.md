@@ -2,8 +2,8 @@
 title: "풀이건축사사무소"
 date: ""
 description: ""
-tags: "" 
-year: ""
+tags: []
+year: 2026
 medium: ""
 ---
 
