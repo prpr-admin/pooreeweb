@@ -140,22 +140,14 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"architecture": {
-"pavilion-2025.md": {
-	id: "pavilion-2025.md";
-  slug: "pavilion-2025";
+		"architecture": Record<string, {
+  id: string;
+  slug: string;
   body: string;
   collection: "architecture";
-  data: InferEntrySchema<"architecture">
-} & { render(): Render[".md"] };
-"small-house-study.md": {
-	id: "small-house-study.md";
-  slug: "small-house-study";
-  body: string;
-  collection: "architecture";
-  data: InferEntrySchema<"architecture">
-} & { render(): Render[".md"] };
-};
+  data: InferEntrySchema<"architecture">;
+  render(): Render[".md"];
+}>;
 "archives": {
 "project-2023-wooden-shelf.md": {
 	id: "project-2023-wooden-shelf.md";
@@ -180,53 +172,74 @@ declare module 'astro:content' {
   collection: "information";
   data: InferEntrySchema<"information">
 } & { render(): Render[".md"] };
-"welcome.md": {
-	id: "welcome.md";
-  slug: "welcome";
+};
+"objects": Record<string, {
+  id: string;
+  slug: string;
   body: string;
-  collection: "information";
-  data: InferEntrySchema<"information">
+  collection: "objects";
+  data: InferEntrySchema<"objects">;
+  render(): Render[".md"];
+}>;
+"projects": {
+"jeongneung.md": {
+	id: "jeongneung.md";
+  slug: "jeongneung";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+"pdp.md": {
+	id: "pdp.md";
+  slug: "pdp";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+"rrr-small.md": {
+	id: "rrr-small.md";
+  slug: "rrr-small";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+"rrr.md": {
+	id: "rrr.md";
+  slug: "rrr";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+"surrounded.md": {
+	id: "surrounded.md";
+  slug: "surrounded";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+"unesco.md": {
+	id: "unesco.md";
+  slug: "unesco";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+"uos-dormitory.md": {
+	id: "uos-dormitory.md";
+  slug: "uos-dormitory";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
 };
-"objects": {
-"R0004250.md": {
-	id: "R0004250.md";
-  slug: "r0004250";
-  body: string;
-  collection: "objects";
-  data: InferEntrySchema<"objects">
-} & { render(): Render[".md"] };
-"ceramic-vessel-01.md": {
-	id: "ceramic-vessel-01.md";
-  slug: "ceramic-vessel-01";
-  body: string;
-  collection: "objects";
-  data: InferEntrySchema<"objects">
-} & { render(): Render[".md"] };
-"steel-tray.md": {
-	id: "steel-tray.md";
-  slug: "steel-tray";
-  body: string;
-  collection: "objects";
-  data: InferEntrySchema<"objects">
-} & { render(): Render[".md"] };
-};
-"research": {
-"material-honesty.md": {
-	id: "material-honesty.md";
-  slug: "material-honesty";
+"research": Record<string, {
+  id: string;
+  slug: string;
   body: string;
   collection: "research";
-  data: InferEntrySchema<"research">
-} & { render(): Render[".md"] };
-"on-emptiness.md": {
-	id: "on-emptiness.md";
-  slug: "on-emptiness";
-  body: string;
-  collection: "research";
-  data: InferEntrySchema<"research">
-} & { render(): Render[".md"] };
-};
+  data: InferEntrySchema<"research">;
+  render(): Render[".md"];
+}>;
 
 	};
 

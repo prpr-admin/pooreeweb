@@ -1,7 +1,7 @@
 ---
 title: R.R.R
 year: 2022
-program: 설계
+Type: 
 location: 서울
 status: 완료
 description: Renovation, Restoration, Regeneration — 도시 재생을 위한 건축적 전략

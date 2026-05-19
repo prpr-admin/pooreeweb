@@ -1,10 +1,10 @@
 ---
 title: 우리는 무엇에 둘러싸여 있는가
-year: 2025
-Program: Pavilion
+Year: 2025
+Type: Pavilion
 Location: 세종
-status: Competition
-description: 우리를 둘러싼 공간과 물질, 그리고 그 관계에 대한 탐구
+Status: Competition
+Description: 우리를 둘러싼 공간과 물질, 그리고 그 관계에 대한 탐구
 mainImage: /madang_main.png
 images: []
 ---
