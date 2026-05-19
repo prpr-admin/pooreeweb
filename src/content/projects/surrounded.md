@@ -1,11 +1,11 @@
 ---
 title: 우리는 무엇에 둘러싸여 있는가
-year: 2023
-program: 전시
-location: 서울
-status: 완료
+year: 2025
+Program: Pavilion
+Location: 세종
+status: Competition
 description: 우리를 둘러싼 공간과 물질, 그리고 그 관계에 대한 탐구
-mainImage: /R0004250.jpg
+mainImage: /madang_main.png
 images: []
 ---
 
