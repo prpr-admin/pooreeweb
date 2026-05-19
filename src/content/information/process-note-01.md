@@ -1,6 +1,6 @@
 ---
 title: "풀이건축사사무소"
-date: ""
+date: 2026-05-19
 description: ""
 tags: []
 year: 2026

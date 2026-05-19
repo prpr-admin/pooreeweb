@@ -182,6 +182,13 @@ declare module 'astro:content' {
   render(): Render[".md"];
 }>;
 "projects": {
+"bangbae.md": {
+	id: "bangbae.md";
+  slug: "bangbae";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
 "jeongneung.md": {
 	id: "jeongneung.md";
   slug: "jeongneung";
