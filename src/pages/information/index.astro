@@ -13,13 +13,13 @@ const rendered = await Promise.all(sorted.map((p) => p.render()));
       const { Content } = rendered[i];
       return (
         <article class="entry">
-          <div class="col-meta">
-            <time class="entry-date">
+          <div class="col-left">
+            <p class="entry-date">
               {post.data.date?.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' })}
-            </time>
+            </p>
             <h2 class="entry-title">{post.data.title}</h2>
           </div>
-          <div class="col-content">
+          <div class="col-right">
             {post.data.description && (
               <p class="entry-desc">{post.data.description}</p>
             )}
@@ -38,74 +38,85 @@ const rendered = await Promise.all(sorted.map((p) => p.render()));
 
   .entry {
     display: grid;
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+    padding: 3rem 1.5rem;
     border-bottom: 0.5px solid var(--color-border);
   }
 
-  .col-meta {
-    padding: 2rem 1.5rem;
-    border-right: 0.5px solid var(--color-border);
+  .entry:last-child { border-bottom: none; }
+
+  /* 좌측 */
+  .col-left {
+    padding-right: 2rem;
   }
 
   .entry-date {
-    display: block;
-    font-size: 9px;
-    letter-spacing: 0.08em;
-    color: var(--color-text-subtle);
-    margin-bottom: 0.75rem;
-    font-style: normal;
+    font-size: 13px;
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+    color: #1a1a1a;
+    font-weight: 400;
+    margin-bottom: 0.25em;
   }
 
   .entry-title {
     font-size: 13px;
-    letter-spacing: 0.03em;
-    font-weight: 500;
-    line-height: 1.4;
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+    color: #1a1a1a;
+    font-weight: 400;
   }
 
-  .col-content {
-    padding: 2rem 1.5rem;
+  /* 우측 */
+  .col-right {
+    padding-left: 2rem;
   }
 
   .entry-desc {
-    font-size: 11px;
-    color: var(--color-text-muted);
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
+    font-size: 13px;
+    line-height: 1.9;
     letter-spacing: 0.01em;
+    color: #1a1a1a;
+    font-weight: 400;
+    margin-bottom: 1.2em;
   }
 
   .entry-body {
     font-size: 13px;
-    line-height: 1.85;
-    color: var(--color-text);
+    line-height: 1.9;
     letter-spacing: 0.01em;
+    color: #1a1a1a;
+    font-weight: 400;
   }
 
-  .entry-body :global(p) {
+  .entry-body :global(p) { margin-bottom: 1.2em; }
+
+  .entry-body :global(h2) {
+    font-size: 13px;
+    letter-spacing: 0.01em;
+    font-weight: 500;
+    margin: 1.5em 0 0.5em;
+    color: #1a1a1a;
+    text-transform: none;
+  }
+
+  .entry-body :global(ul),
+  .entry-body :global(ol) {
+    padding-left: 1.2em;
     margin-bottom: 1.2em;
   }
 
-  .entry-body :global(h2) {
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    font-weight: 500;
-    margin: 2em 0 0.75em;
-    color: var(--color-text-muted);
+  .entry-body :global(li) {
+    font-size: 13px;
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+    color: #1a1a1a;
   }
 
   @media (max-width: 768px) {
-    .entry {
-      grid-template-columns: 1fr;
-    }
-    .col-meta {
-      border-right: none;
-      border-bottom: 0.5px solid var(--color-border);
-      padding: 1.25rem 1rem;
-    }
-    .col-content {
-      padding: 1.25rem 1rem;
-    }
+    .entry { grid-template-columns: 1fr; padding: 2rem 1rem; }
+    .col-left { padding-right: 0; margin-bottom: 1.5rem; }
+    .col-right { padding-left: 0; }
   }
 </style>
