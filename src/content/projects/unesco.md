@@ -6,7 +6,7 @@ location: Korea
 area: 2,800㎡
 status: Proposal
 description: 세계유산의 가치를 해석하고 전달하는 방문자 센터
-mainImage: /R0004250.jpg
+mainImage: /unesco_main.png
 images: []
 ---
 

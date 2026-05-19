@@ -1,13 +1,13 @@
 ---
 title: R.R.R
-year: 2022
-type: Design
-location: Seoul
+year: 2024
+type: Object
+location: 
 area:
 status: Completed
-description: Renovation, Restoration, Regeneration — 도시 재생을 위한 건축적 전략
-mainImage: /R0004250.jpg
+description: 
+mainImage: /R_main.png
 images: []
 ---
 
-R.R.R은 도시 내 노후화된 공간을 대상으로 리노베이션(Renovation), 복원(Restoration), 재생(Regeneration)의 전략을 통해 새로운 가능성을 탐색하는 프로젝트이다.
+R.R.R

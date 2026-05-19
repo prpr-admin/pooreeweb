@@ -1,12 +1,12 @@
 ---
 title: P-D-P
-year: 2023
+year: 2026
 type: Design
 location: Seoul
 area:
 status: Ongoing
 description: Program — Design — Program의 순환적 설계 방법론
-mainImage: /R0004250.jpg
+mainImage: 
 images: []
 ---
 

@@ -6,7 +6,7 @@ location: Seoul
 area:
 status: Completed
 description: 우리를 둘러싼 공간과 물질, 그리고 그 관계에 대한 탐구
-mainImage: /R0004250.jpg
+mainImage: /madang_main.png
 images: []
 ---
 
