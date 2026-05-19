@@ -75,9 +75,9 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     year: z.number().optional(),
-    program: z.string().optional(),
-    location: z.string().optional(),
-    area: z.string().optional(),
+    type: z.string().nullable().optional(),
+    location: z.string().nullable().optional(),
+    area: z.string().nullable().optional(),
     status: z.string().optional(),
     description: z.string().optional(),
     mainImage: z.string().optional(),

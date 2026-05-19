@@ -1,12 +1,12 @@
 ---
 title: 유네스코 세계유산 해석설명센터
-Year: 2025
-Program: Public
-Location: 세종
+year: 2023
+type: Cultural Facility
+location: Korea
 area: 2,800㎡
-Status: Competition / 2nd 
-Description: 세계유산의 가치를 해석하고 전달하는 방문자 센터
-mainImage: /unesco_main.png
+status: Proposal
+description: 세계유산의 가치를 해석하고 전달하는 방문자 센터
+mainImage: /R0004250.jpg
 images: []
 ---
 

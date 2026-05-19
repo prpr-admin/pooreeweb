@@ -1,9 +1,10 @@
 ---
 title: R.R.R
 year: 2022
-Type: 
-location: 서울
-status: 완료
+type: Design
+location: Seoul
+area:
+status: Completed
 description: Renovation, Restoration, Regeneration — 도시 재생을 위한 건축적 전략
 mainImage: /R0004250.jpg
 images: []
