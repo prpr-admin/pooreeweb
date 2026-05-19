@@ -6,7 +6,7 @@ location: Dongdaemun-gu, Seoul
 area: 4,500㎡
 status: Proposal
 description: 국제 학생을 위한 기숙사 증축 및 공동체 공간 조성
-mainImage: /R0004250.jpg
+mainImage: /
 images: []
 ---
 

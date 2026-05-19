@@ -1,89 +1,95 @@
 import { defineCollection, z } from 'astro:content';
 
+// null 허용 헬퍼
+const optStr  = z.string().nullable().optional();
+const optNum  = z.number().nullable().optional();
+const optDate = z.coerce.date().nullable().optional();
+const optArr  = (inner = z.string()) => z.array(inner).nullable().optional();
+
 const archives = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
-    category: z.string().optional(),
-    status: z.string().optional(),
-    year: z.number().optional(),
-    thumbnail: z.string().optional(),
-    description: z.string().optional(),
-    tags: z.array(z.string()).optional(),
-    date: z.coerce.date().optional(),
+    title:       z.string(),
+    category:    optStr,
+    status:      optStr,
+    year:        optNum,
+    thumbnail:   optStr,
+    description: optStr,
+    tags:        optArr(),
+    date:        optDate,
   }),
 });
 
 const information = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
-    date: z.coerce.date().optional(),
-    description: z.string().optional(),
-    tags: z.array(z.string()).optional(),
-    draft: z.boolean().default(false),
+    title:       z.string(),
+    date:        optDate,
+    description: optStr,
+    tags:        optArr(),
+    draft:       z.boolean().default(false),
   }),
 });
 
 const research = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
-    date: z.coerce.date().optional(),
-    year: z.number().optional(),
-    status: z.string().optional(),
-    description: z.string().optional(),
-    thumbnail: z.string().optional(),
-    author: z.string().optional(),
-    references: z.array(z.string()).default([]),
-    tags: z.array(z.string()).optional(),
-    draft: z.boolean().default(false),
+    title:       z.string(),
+    date:        optDate,
+    year:        optNum,
+    status:      optStr,
+    description: optStr,
+    thumbnail:   optStr,
+    author:      optStr,
+    references:  z.array(z.string()).default([]),
+    tags:        optArr(),
+    draft:       z.boolean().default(false),
   }),
 });
 
 const architecture = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
-    date: z.coerce.date().optional(),
-    description: z.string().optional(),
-    location: z.string().optional(),
-    area: z.string().optional(),
-    status: z.string().optional(),
-    tags: z.array(z.string()).optional(),
-    draft: z.boolean().default(false),
+    title:       z.string(),
+    date:        optDate,
+    description: optStr,
+    location:    optStr,
+    area:        optStr,
+    status:      optStr,
+    tags:        optArr(),
+    draft:       z.boolean().default(false),
   }),
 });
 
 const objects = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
-    date: z.coerce.date().optional(),
-    description: z.string().optional(),
-    cover: z.string().optional(),
-    material: z.string().optional(),
-    dimensions: z.string().optional(),
-    edition: z.string().optional(),
-    tags: z.array(z.string()).optional(),
-    draft: z.boolean().default(false),
+    title:       z.string(),
+    date:        optDate,
+    description: optStr,
+    cover:       optStr,
+    material:    optStr,
+    dimensions:  optStr,
+    edition:     optStr,
+    tags:        optArr(),
+    draft:       z.boolean().default(false),
   }),
 });
 
 const projects = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
-    year: z.number().optional(),
-    type: z.string().nullable().optional(),
-    location: z.string().nullable().optional(),
-    area: z.string().nullable().optional(),
-    status: z.string().optional(),
-    description: z.string().optional(),
-    mainImage: z.string().optional(),
-    images: z.array(z.string()).default([]),
-    tags: z.array(z.string()).optional(),
-    draft: z.boolean().default(false),
+    title:       z.string(),
+    year:        optNum,
+    type:        optStr,
+    location:    optStr,
+    area:        optStr,
+    status:      optStr,
+    description: optStr,
+    mainImage:   optStr,
+    images:      z.array(z.string()).default([]),
+    tags:        optArr(),
+    draft:       z.boolean().default(false),
   }),
 });
 

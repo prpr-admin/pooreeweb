@@ -6,7 +6,7 @@ location: Seongbuk-gu, Seoul
 area: 1,200㎡
 status: Proposal
 description: 지역 주민의 일상과 공동체를 위한 공공 공간
-mainImage: /R0004250.jpg
+mainImage: /jeongnueng_main.png
 images: []
 ---
 

@@ -6,7 +6,7 @@ location: Seoul
 area: 472㎡
 status: Work in Progress
 description: 1980년대 벽돌 건물 리모델링
-mainImage: 
+mainImage: /
 images: []
 ---
 
