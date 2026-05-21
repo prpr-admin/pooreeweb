@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects', ({ data }) => !data.draft);
-const projects = allProjects.sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+const projects = allProjects.sort((a, b) => b.slug.localeCompare(a.slug));
 ---
 
 <BaseLayout title="Projects — 풀이">
