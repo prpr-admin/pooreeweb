@@ -9,8 +9,8 @@ const currentPath = Astro.url.pathname;
 
 const navItems = [
   { label: 'Information', href: '/information' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Archives', href: '/archives' },
+  { label: 'Projects',    href: '/projects' },
+  { label: 'Archives',    href: '/archives' },
 ];
 ---
 
@@ -30,28 +30,32 @@ const navItems = [
 
     <header class="header">
       <a href="/" class="logo">
-        <img src="/pooreeci.png" alt="풀이" class="logo-img" />
+        <img src="/pooree%20CI_transparent.png" alt="풀이" class="logo-img" />
       </a>
-
-      <nav class="nav">
-        {navItems.map((item) => (
-          <a
-            href={item.href}
-            class:list={[
-              'nav-link',
-              {
-                active:
-                  item.href === '/archives'
-                    ? currentPath === '/' || currentPath.startsWith('/archives')
-                    : currentPath.startsWith(item.href),
-              },
-            ]}
-          >
-            {item.label}
-          </a>
-        ))}
-      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="메뉴" aria-expanded="false">
+        <span class="btn-icon">+</span>
+      </button>
     </header>
+
+    <!-- 플로팅 네비 -->
+    <nav class="floating-nav" id="floatingNav" aria-hidden="true">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'fnav-link',
+            {
+              active:
+                item.href === '/archives'
+                  ? currentPath === '/' || currentPath.startsWith('/archives')
+                  : currentPath.startsWith(item.href),
+            },
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
 
     <main class="main">
       <slot />
@@ -59,6 +63,42 @@ const navItems = [
 
   </body>
 </html>
+
+<script>
+  const menuBtn    = document.getElementById('menuBtn') as HTMLButtonElement;
+  const floatingNav = document.getElementById('floatingNav');
+
+  function open() {
+    floatingNav?.classList.add('open');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    floatingNav?.setAttribute('aria-hidden', 'false');
+    const icon = menuBtn.querySelector('.btn-icon');
+    if (icon) icon.textContent = '×';
+  }
+
+  function close() {
+    floatingNav?.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    floatingNav?.setAttribute('aria-hidden', 'true');
+    const icon = menuBtn.querySelector('.btn-icon');
+    if (icon) icon.textContent = '+';
+  }
+
+  menuBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    floatingNav?.classList.contains('open') ? close() : open();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!floatingNav?.contains(e.target as Node) && !menuBtn?.contains(e.target as Node)) {
+      close();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+  });
+</script>
 
 <style is:global>
   *, *::before, *::after {
@@ -68,7 +108,6 @@ const navItems = [
   }
 
   :root {
-    --font: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
     --font: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
     --color-text: #1a1a1a;
     --color-text-muted: #1a1a1a;
@@ -99,11 +138,10 @@ const navItems = [
 </style>
 
 <style>
+  /* ── 헤더 ── */
   .header {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: var(--header-h);
     padding: 0 1.5rem;
     background: transparent;
@@ -113,48 +151,79 @@ const navItems = [
     justify-content: space-between;
   }
 
-  .logo {
+  .logo { display: flex; align-items: center; }
+
+  .logo-img { height: 24px; width: auto; display: block; }
+
+  /* ── + 버튼 ── */
+  .menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
     display: flex;
     align-items: center;
+    padding: 8px 0;
   }
 
-  .logo-img {
-    height: 24px;
-    width: auto;
+  .btn-icon {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1;
+    color: #1a1a1a;
     display: block;
-  }
-
-  .nav {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .nav-link {
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
     transition: color 0.15s;
-    white-space: nowrap;
+    user-select: none;
   }
 
-  .nav-link:hover {
-    color: var(--color-text);
+  .menu-btn:hover .btn-icon { opacity: 0.5; }
+
+  /* ── 플로팅 네비 패널 ── */
+  .floating-nav {
+    position: fixed;
+    top: var(--header-h);
+    right: 1.5rem;
+    background: #fff;
+    border: 0.5px solid var(--color-border);
+    min-width: 180px;
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
   }
 
-  .nav-link.active {
-    color: var(--color-text);
-    font-weight: 500;
+  .floating-nav.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
+  .fnav-link {
+    display: block;
+    padding: 0.9rem 1.25rem;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    border-bottom: 0.5px solid var(--color-border);
+    transition: background 0.12s;
+    font-family: var(--font);
+  }
+
+  .fnav-link:last-child { border-bottom: none; }
+
+  .fnav-link:hover { background: var(--color-bg-hover); }
+
+  .fnav-link.active { font-weight: 500; }
+
+  /* ── 메인 ── */
   .main {
     width: 100%;
     min-height: calc(100vh - var(--header-h));
   }
 
   @media (max-width: 480px) {
-    .nav { gap: 1.25rem; }
-    .nav-link { font-size: 11px; letter-spacing: 0.1em; }
+    .floating-nav { right: 1rem; min-width: 160px; }
   }
 </style>

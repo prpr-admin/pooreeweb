@@ -6,7 +6,7 @@ location:
 area:
 status: Completed
 description: 
-mainImage: /rrr_main.jpg
+mainImage: /rrr_main.png
 images: []
 ---
 

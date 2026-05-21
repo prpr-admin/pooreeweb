@@ -130,7 +130,11 @@ const projects = allProjects.sort((a, b) => (b.data.year ?? 0) - (a.data.year ??
     color: var(--color-text-subtle);
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
+    .project-image-wrap {
+      aspect-ratio: unset;
+      height: 100svh;
+    }
     .project-caption {
       padding: 0.5rem 1rem;
       gap: 0.5rem;
