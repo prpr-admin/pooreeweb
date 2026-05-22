@@ -163,6 +163,20 @@ declare module 'astro:content' {
   collection: "archives";
   data: InferEntrySchema<"archives">
 } & { render(): Render[".md"] };
+"202602.md": {
+	id: "202602.md";
+  slug: "202602";
+  body: string;
+  collection: "archives";
+  data: InferEntrySchema<"archives">
+} & { render(): Render[".md"] };
+"202605.md": {
+	id: "202605.md";
+  slug: "202605";
+  body: string;
+  collection: "archives";
+  data: InferEntrySchema<"archives">
+} & { render(): Render[".md"] };
 };
 "information": Record<string, {
   id: string;
