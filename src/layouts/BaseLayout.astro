@@ -51,6 +51,13 @@ const navItems = [
             {item.label}
           </a>
         ))}
+        <a
+          href="https://www.instagram.com/pooree_arc"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="instagram-link"
+          aria-label="Instagram"
+        >↗</a>
       </nav>
 
       <!-- 모바일: + 버튼 -->
@@ -77,6 +84,12 @@ const navItems = [
           {item.label}
         </a>
       ))}
+      <a
+        href="https://www.instagram.com/pooree_arc"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="fnav-link fnav-instagram"
+      >Instagram ↗</a>
     </nav>
 
     <main class="main">
@@ -196,6 +209,17 @@ const navItems = [
   .dnav-link:hover { opacity: 0.5; }
 
   .dnav-link.active { font-weight: 500; }
+
+  .instagram-link {
+    font-size: 14px;
+    line-height: 1;
+    color: #1a1a1a;
+    transition: opacity 0.15s;
+    display: flex;
+    align-items: center;
+  }
+
+  .instagram-link:hover { opacity: 0.5; }
 
   /* ── 모바일 + 버튼 (기본 숨김, 모바일에서 표시) ── */
   .menu-btn {

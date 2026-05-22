@@ -1,11 +1,11 @@
 ---
-title: 유네스코 세계유산 해석설명센터
-year: 2023
-type: Cultural Facility
-location: Korea
+title: 유네스코 세계유산 해석설명센터 설계공모
+year: 2025
+type: Competitiion 2nd
+location: Sejong, Korea
 area: 2,800㎡
-status: Proposal
-description: 세계유산의 가치를 해석하고 전달하는 방문자 센터
+status: Unbuilt
+description: 
 mainImage: /unesco_main.png
 images: []
 ---

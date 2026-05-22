@@ -1,10 +1,10 @@
 ---
 title: 정릉3동 주민센터
-year: 2022
-type: Public Architecture
+year: 2025
+type: Competition
 location: Seongbuk-gu, Seoul
 area: 1,200㎡
-status: Proposal
+status: Unbuilt
 description: 지역 주민의 일상과 공동체를 위한 공공 공간
 mainImage: /jeongnueng_main.png
 images: []
