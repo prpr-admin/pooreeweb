@@ -2,9 +2,9 @@
 title: Round Radius Rocking
 year: 2024
 type: Objects
-program: -
-area: -
-location: -
+program: 
+area: 
+location: 
 status: Completed
 mainImage: /R_main.png
 images:

@@ -149,30 +149,29 @@ declare module 'astro:content' {
   render(): Render[".md"];
 }>;
 "archives": {
-"project-2023-wooden-shelf.md": {
-	id: "project-2023-wooden-shelf.md";
-  slug: "project-2023-wooden-shelf";
+"202508.md": {
+	id: "202508.md";
+  slug: "202508";
   body: string;
   collection: "archives";
   data: InferEntrySchema<"archives">
 } & { render(): Render[".md"] };
-"project-2024-concrete-bench.md": {
-	id: "project-2024-concrete-bench.md";
-  slug: "project-2024-concrete-bench";
+"202510.md": {
+	id: "202510.md";
+  slug: "202510";
   body: string;
   collection: "archives";
   data: InferEntrySchema<"archives">
 } & { render(): Render[".md"] };
 };
-"information": {
-"process-note-01.md": {
-	id: "process-note-01.md";
-  slug: "process-note-01";
+"information": Record<string, {
+  id: string;
+  slug: string;
   body: string;
   collection: "information";
-  data: InferEntrySchema<"information">
-} & { render(): Render[".md"] };
-};
+  data: InferEntrySchema<"information">;
+  render(): Render[".md"];
+}>;
 "objects": Record<string, {
   id: string;
   slug: string;
@@ -182,58 +181,51 @@ declare module 'astro:content' {
   render(): Render[".md"];
 }>;
 "projects": {
-"bangbae.md": {
-	id: "bangbae.md";
-  slug: "bangbae";
+"0000template.md": {
+	id: "0000template.md";
+  slug: "0000template";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
-"jeongneung.md": {
-	id: "jeongneung.md";
-  slug: "jeongneung";
+"2407rrr-big.md": {
+	id: "2407rrr-big.md";
+  slug: "2407rrr-big";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
-"pdp.md": {
-	id: "pdp.md";
-  slug: "pdp";
+"2407rrr.md": {
+	id: "2407rrr.md";
+  slug: "2407rrr";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
-"rrr-small.md": {
-	id: "rrr-small.md";
-  slug: "rrr-small";
+"2410rrr-small.md": {
+	id: "2410rrr-small.md";
+  slug: "2410rrr-small";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
-"rrr.md": {
-	id: "rrr.md";
-  slug: "rrr";
+"2505surrounded.md": {
+	id: "2505surrounded.md";
+  slug: "2505surrounded";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
-"surrounded.md": {
-	id: "surrounded.md";
-  slug: "surrounded";
+"2510jeongneung.md": {
+	id: "2510jeongneung.md";
+  slug: "2510jeongneung";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
-"unesco.md": {
-	id: "unesco.md";
-  slug: "unesco";
-  body: string;
-  collection: "projects";
-  data: InferEntrySchema<"projects">
-} & { render(): Render[".md"] };
-"uos-dormitory.md": {
-	id: "uos-dormitory.md";
-  slug: "uos-dormitory";
+"2510unesco.md": {
+	id: "2510unesco.md";
+  slug: "2510unesco";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">
