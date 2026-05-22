@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const allItems = await getCollection('archives');
-const items = allItems.sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+const items = allItems.sort((a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0));
 const rendered = await Promise.all(items.map((p) => p.render()));
 ---
 
@@ -15,11 +15,11 @@ const rendered = await Promise.all(items.map((p) => p.render()));
         <article class="entry">
           <div class="col-left">
             <h2 class="entry-title">{item.data.title}</h2>
-            <div class="entry-meta">
-              {item.data.category && <p class="meta-item">{item.data.category}</p>}
-              {item.data.status && <p class="meta-item">{item.data.status}</p>}
-              {item.data.year && <p class="meta-item">{item.data.year}</p>}
-            </div>
+            {item.data.date && (
+              <p class="entry-date">
+                {item.data.date.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+              </p>
+            )}
           </div>
           <div class="col-right">
             {item.data.description && (
@@ -28,6 +28,11 @@ const rendered = await Promise.all(items.map((p) => p.render()));
             <div class="entry-body">
               <Content />
             </div>
+            {item.data.images && item.data.images.length > 0 && item.data.images.map((img) => (
+              <div class="gallery-item">
+                <img src={img} alt="" class="gallery-img" loading="lazy" />
+              </div>
+            ))}
           </div>
         </article>
       );
@@ -59,14 +64,9 @@ const rendered = await Promise.all(items.map((p) => p.render()));
     letter-spacing: 0.01em;
     color: #1a1a1a;
     font-weight: 400;
-    margin-bottom: 0.25em;
   }
 
-  .entry-meta {
-    margin-top: 0.25em;
-  }
-
-  .meta-item {
+  .entry-date {
     font-size: 13px;
     line-height: 1.9;
     letter-spacing: 0.01em;
@@ -118,6 +118,15 @@ const rendered = await Promise.all(items.map((p) => p.render()));
     line-height: 1.9;
     letter-spacing: 0.01em;
     color: #1a1a1a;
+  }
+
+  .gallery-item {
+    margin-top: 1.5rem;
+  }
+
+  .gallery-img {
+    width: 100%;
+    display: block;
   }
 
   @media (max-width: 768px) {

@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
-const { title, year, type, location, area, status, description, mainImage, images } = project.data;
+const { title, year, type, program, location, area, status, description, mainImage, images } = project.data;
 ---
 
 <BaseLayout title={`${title} — 풀이`}>
@@ -39,10 +39,16 @@ const { title, year, type, location, area, status, description, mainImage, image
               <dd class="meta-value">{type}</dd>
             </>
           )}
-          {location && (
+          {year && (
             <>
-              <dt class="meta-label">Location</dt>
-              <dd class="meta-value">{location}</dd>
+              <dt class="meta-label">Year</dt>
+              <dd class="meta-value">{year}</dd>
+            </>
+          )}
+          {program && (
+            <>
+              <dt class="meta-label">Program</dt>
+              <dd class="meta-value">{program}</dd>
             </>
           )}
           {area && (
@@ -51,10 +57,10 @@ const { title, year, type, location, area, status, description, mainImage, image
               <dd class="meta-value">{area}</dd>
             </>
           )}
-          {year && (
+          {location && (
             <>
-              <dt class="meta-label">Year</dt>
-              <dd class="meta-value">{year}</dd>
+              <dt class="meta-label">Location</dt>
+              <dd class="meta-value">{location}</dd>
             </>
           )}
           {status && (

@@ -10,13 +10,14 @@ const archives = defineCollection({
   type: 'content',
   schema: z.object({
     title:       z.string(),
+    date:        optDate,
     category:    optStr,
     status:      optStr,
     year:        optNum,
     thumbnail:   optStr,
     description: optStr,
+    images:      z.array(z.string()).default([]),
     tags:        optArr(),
-    date:        optDate,
   }),
 });
 
@@ -82,6 +83,7 @@ const projects = defineCollection({
     title:       z.string(),
     year:        optNum,
     type:        optStr,
+    program:     optStr,
     location:    optStr,
     area:        optStr,
     status:      optStr,

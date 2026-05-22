@@ -30,14 +30,36 @@ const navItems = [
 
     <header class="header">
       <a href="/" class="logo">
-        <img src="/pooree%20CI_transparent.png" alt="풀이" class="logo-img" />
+        <img src="/pooreeci.png" alt="풀이" class="logo-img" />
       </a>
+
+      <!-- 데스크톱: 인라인 네비 -->
+      <nav class="desktop-nav">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'dnav-link',
+              {
+                active:
+                  item.href === '/archives'
+                    ? currentPath === '/' || currentPath.startsWith('/archives')
+                    : currentPath.startsWith(item.href),
+              },
+            ]}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- 모바일: + 버튼 -->
       <button class="menu-btn" id="menuBtn" aria-label="메뉴" aria-expanded="false">
         <span class="btn-icon">+</span>
       </button>
     </header>
 
-    <!-- 플로팅 네비 -->
+    <!-- 모바일 플로팅 네비 -->
     <nav class="floating-nav" id="floatingNav" aria-hidden="true">
       {navItems.map((item) => (
         <a
@@ -155,12 +177,32 @@ const navItems = [
 
   .logo-img { height: 24px; width: auto; display: block; }
 
-  /* ── + 버튼 ── */
+  /* ── 데스크톱 인라인 네비 ── */
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .dnav-link {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    font-family: var(--font);
+    transition: opacity 0.15s;
+  }
+
+  .dnav-link:hover { opacity: 0.5; }
+
+  .dnav-link.active { font-weight: 500; }
+
+  /* ── 모바일 + 버튼 (기본 숨김, 모바일에서 표시) ── */
   .menu-btn {
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
-    display: flex;
     align-items: center;
     padding: 8px 0;
   }
@@ -177,7 +219,7 @@ const navItems = [
 
   .menu-btn:hover .btn-icon { opacity: 0.5; }
 
-  /* ── 플로팅 네비 패널 ── */
+  /* ── 모바일 플로팅 네비 패널 ── */
   .floating-nav {
     position: fixed;
     top: var(--header-h);
@@ -191,6 +233,7 @@ const navItems = [
     transform: translateY(-6px);
     transition: opacity 0.2s ease, transform 0.2s ease;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+    display: none;
   }
 
   .floating-nav.open {
@@ -223,7 +266,11 @@ const navItems = [
     min-height: calc(100vh - var(--header-h));
   }
 
-  @media (max-width: 480px) {
+  /* ── 모바일: + 버튼 표시, 데스크톱 네비 숨김 ── */
+  @media (max-width: 768px) {
+    .desktop-nav { display: none; }
+    .menu-btn { display: flex; }
+    .floating-nav { display: block; }
     .floating-nav { right: 1rem; min-width: 160px; }
   }
 </style>
