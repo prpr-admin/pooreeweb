@@ -1,9 +1,9 @@
 ---
 title: 우리는 무엇에 둘러싸여 있는가
-year: 2023
+year: 2025
 type: Competition
 program: Pavilion
-location: Seoul
+location: Sejong
 area:
 status: Unbuilt
 description:

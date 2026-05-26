@@ -3,7 +3,7 @@ title: 서울시립대학교 국제학사 증축 설계공모
 year: 2026
 type: Competitiion
 program: 교육연구시설
-location: 서울시립대학교
+location: Dongdaemun-gu, Seoul
 area: 6,669.88㎡
 status: Unbuilt
 description: 
