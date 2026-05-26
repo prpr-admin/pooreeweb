@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const allItems = await getCollection('archives');
-const items = allItems.sort((a, b) => (a.data.date?.valueOf() ?? 0) - (b.data.date?.valueOf() ?? 0));
 const rendered = await Promise.all(items.map((p) => p.render()));
 ---
 
@@ -15,11 +14,7 @@ const rendered = await Promise.all(items.map((p) => p.render()));
         <article class="entry">
           <div class="col-left">
             <h2 class="entry-title">{item.data.title}</h2>
-            {item.data.date && (
-              <p class="entry-date">
-                {item.data.date.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' })}
-              </p>
-            )}
+
           </div>
           <div class="col-right">
             {item.data.description && (

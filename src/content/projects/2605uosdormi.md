@@ -7,19 +7,20 @@ location: 서울시립대학교
 area: 6,669.88㎡
 status: Unbuilt
 description: 
-mainImage: /2605dormi/main.jpg
+mainImage: /2605uosdormi/uosdormi_main.png
 images: 
-  - /2605dormi/image_01.jpg
-  - /2605dormi/image_02.jpg
-  - /2605dormi/image_03.jpg
-  - /2605dormi/image_04.jpg
-  - /2605dormi/image_05.jpg
-  - /2605dormi/image_06.jpg
-  - /2605dormi/image_07.jpg
-  - /2605dormi/image_08.jpg
+  - /2605uosdormi/image_01.jpg
+  - /2605uosdormi/image_02.jpg
+  - /2605uosdormi/image_03.jpg
+  - /2605uosdormi/image_04.jpg
+  - /2605uosdormi/image_05.jpg
+  - /2605uosdormi/image_06.jpg
+  - /2605uosdormi/image_07.jpg
+  - /2605uosdormi/image_08.jpg
 
 ---
-## w / 스튜디오 만물상
+w / 스튜디오 만물상
 
-## 빽빽한 숲
+
+빽빽한 숲
 
