@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const allItems = await getCollection('archives');
+const items = allItems.sort((a, b) => (a.data.date?.valueOf() ?? 0) - (b.data.date?.valueOf() ?? 0));
 const rendered = await Promise.all(items.map((p) => p.render()));
 ---
 
